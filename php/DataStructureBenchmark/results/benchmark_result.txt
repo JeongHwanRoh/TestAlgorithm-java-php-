@@ -1,0 +1,66 @@
+Benchmark Started At: 2026-03-23 04:26:27
+Data File: C:\Users\jeonghwanroh\php\DataStructureBenchmark/data/dataset.txt
+Search Sample Size: 1000
+
+========== HashTable ==========
+Inserted Count     : 200000
+Insert Time (ms)   : 774.151
+Search Sample      : 1000
+Found Count        : 1000
+Search Time (ms)   : 0.249
+Sort Time (ms)     : 722.903
+Peak Memory (MB)   : 136.000
+
+========== BTree ==========
+Inserted Count     : 200000
+Insert Time (ms)   : 2,213.313
+Search Sample      : 1000
+Found Count        : 1000
+Search Time (ms)   : 5.640
+Sort Time (ms)     : 0.000
+Peak Memory (MB)   : 246.000
+
+========== LinkedList ==========
+Inserted Count     : 200000
+Insert Time (ms)   : 773.101
+Search Sample      : 1000
+Found Count        : 1000
+Search Time (ms)   : 12.137
+Sort Time (ms)     : 1,017.590
+Peak Memory (MB)   : 404.000
+
+========== ArrayList ==========
+Inserted Count     : 200000
+Insert Time (ms)   : 778.248
+Search Sample      : 1000
+Found Count        : 1000
+Search Time (ms)   : 13.880
+Sort Time (ms)     : 817.902
+Peak Memory (MB)   : 446.000
+
+========== Vector ==========
+Inserted Count     : 200000
+Insert Time (ms)   : 752.484
+Search Sample      : 1000
+Found Count        : 1000
+Search Time (ms)   : 20.702
+Sort Time (ms)     : 831.944
+Peak Memory (MB)   : 624.000
+
+========== Graph ==========
+Inserted Count     : 200000
+Insert Time (ms)   : 949.995
+Search Sample      : 1000
+Found Count        : 1000
+Search Time (ms)   : 0.354
+Sort Time (ms)     : 841.258
+Peak Memory (MB)   : 730.000
+
+========== Heap ==========
+Inserted Count     : 200000
+Insert Time (ms)   : 874.709
+Search Sample      : 1000
+Found Count        : 1000
+Search Time (ms)   : 0.208
+Sort Time (ms)     : 1,058.211
+Peak Memory (MB)   : 862.000
