@@ -159,17 +159,3 @@
 - 자료구조 선택이 성능에 가장 큰 영향을 미침
 
 ---
-
-## 📌 향후 개선 방향
-
-- C++/Rust 기반 비교 실험
-- 메모리 최적화 구조 설계
-- 대용량 데이터 스트리밍 처리
-- 병렬 처리 벤치마크
-
----
-
-## 👨‍💻 Author
-
-- Name: Jeonghwan Roh
-- Project: Data Structure Benchmark
