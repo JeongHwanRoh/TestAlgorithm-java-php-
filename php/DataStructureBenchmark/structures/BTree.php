@@ -65,20 +65,21 @@ class BTree
 
     private function searchNode(BTreeNode $node, string $key): ?array
     {
-        $i = 0;
-        while ($i < count($node->keys) && strcmp($key, $node->keys[$i]['key']) > 0) {
-            $i++;
+        $current = $node;
+        while (true) {
+            $i = 0;
+            $cnt = count($current->keys);
+            while ($i < $cnt && strcmp($key, $current->keys[$i]['key']) > 0) {
+                $i++;
+            }
+            if ($i < $cnt && $current->keys[$i]['key'] === $key) {
+                return $current->keys[$i];
+            }
+            if ($current->leaf) {
+                return null;
+            }
+            $current = $current->children[$i];
         }
-
-        if ($i < count($node->keys) && $node->keys[$i]['key'] === $key) {
-            return $node->keys[$i];
-        }
-
-        if ($node->leaf) {
-            return null;
-        }
-
-        return $this->searchNode($node->children[$i], $key);
     }
 
     private function splitChild(BTreeNode $parent, int $index): void
@@ -103,48 +104,50 @@ class BTree
 
     private function insertNonFull(BTreeNode $node, array $record): void
     {
-        $i = count($node->keys) - 1;
+        $current = $node;
+        while (true) {
+            $i = count($current->keys) - 1;
 
-        if ($node->leaf) {
-            $node->keys[] = $record;
-            while ($i >= 0 && strcmp($record['key'], $node->keys[$i]['key']) < 0) {
-                $node->keys[$i + 1] = $node->keys[$i];
+            if ($current->leaf) {
+                $current->keys[] = $record;
+                while ($i >= 0 && strcmp($record['key'], $current->keys[$i]['key']) < 0) {
+                    $current->keys[$i + 1] = $current->keys[$i];
+                    $i--;
+                }
+                $current->keys[$i + 1] = $record;
+                return;
+            }
+
+            while ($i >= 0 && strcmp($record['key'], $current->keys[$i]['key']) < 0) {
                 $i--;
             }
-            $node->keys[$i + 1] = $record;
-            return;
-        }
+            $i++;
 
-        while ($i >= 0 && strcmp($record['key'], $node->keys[$i]['key']) < 0) {
-            $i--;
-        }
-
-        $i++;
-
-        if (count($node->children[$i]->keys) === 2 * $this->t - 1) {
-            $this->splitChild($node, $i);
-
-            if (strcmp($record['key'], $node->keys[$i]['key']) > 0) {
-                $i++;
+            if (count($current->children[$i]->keys) === 2 * $this->t - 1) {
+                $this->splitChild($current, $i);
+                if (strcmp($record['key'], $current->keys[$i]['key']) > 0) {
+                    $i++;
+                }
             }
-        }
 
-        $this->insertNonFull($node->children[$i], $record);
+            $current = $current->children[$i];
+        }
     }
 
     private function traverse(BTreeNode $node, array &$result): void
     {
-        $n = count($node->keys);
-
-        for ($i = 0; $i < $n; $i++) {
-            if (!$node->leaf) {
-                $this->traverse($node->children[$i], $result);
+        // BFS로 전체 키 수집 (sortByKeyString에서 어차피 usort하므로 순서 무관)
+        $queue = [$node];
+        while (!empty($queue)) {
+            $current = array_shift($queue);
+            foreach ($current->keys as $key) {
+                $result[] = $key;
             }
-            $result[] = $node->keys[$i];
-        }
-
-        if (!$node->leaf) {
-            $this->traverse($node->children[$n], $result);
+            if (!$current->leaf) {
+                foreach ($current->children as $child) {
+                    $queue[] = $child;
+                }
+            }
         }
     }
 }

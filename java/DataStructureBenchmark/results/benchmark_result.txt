@@ -1,0 +1,22 @@
+Benchmark Started At: Tue Mar 24 17:43:45 KST 2026
+Data File: C:/Users/jeonghwanroh/algorithmTest/java/DataStructureBenchmark/data/dataset.txt
+Search Sample Size: 1000
+
+========== HashTable ==========
+Inserted Count     : 200000
+Insert Time (ms)   : 64
+Search Sample      : 1000
+Found Count        : 1000
+Search Time (ms)   : 0
+Sort Time (ms)     : 0
+Peak Memory (MB)   : 72
+
+========== BTree ==========
+Inserted Count     : 200000
+Insert Time (ms)   : 285
+Search Sample      : 1000
+Found Count        : 1000
+Search Time (ms)   : 3
+Sort Time (ms)     : 0
+Peak Memory (MB)   : 84
+

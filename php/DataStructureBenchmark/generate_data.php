@@ -19,7 +19,7 @@ $fp = fopen("data/dataset.txt", "w");
 fwrite($fp, "key,keyString,value\n");
 
 $count = 0;
-$target = 200000; // 20만
+$target = 500000; // 50만
 
 for ($i = 0; $i < $target; $i++) {
 

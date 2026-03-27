@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+ini_set('memory_limit', '4096M');
+
 require_once __DIR__ . '/structures/BTree.php';
 require_once __DIR__ . '/structures/HashTable.php';
 require_once __DIR__ . '/structures/LinkedList.php';
@@ -20,6 +22,9 @@ const SEARCH_SAMPLE_SIZE = 1000;
 // 정렬 실행 여부
 const ENABLE_SORT = true;
 
+// 벤치마크할 데이터 삽입 크기 구간
+const INSERT_SIZES = [10000, 50000, 100000, 200000];
+
 function ensureDirectory(string $dir): void
 {
     if (!is_dir($dir)) {
@@ -29,7 +34,7 @@ function ensureDirectory(string $dir): void
 
 function nowMs(): float
 {
-    return microtime(true) * 1000;
+    return microtime(true) * 10000;
 }
 
 /**
@@ -61,8 +66,10 @@ function loadSearchKeys(string $file, int $sampleSize = SEARCH_SAMPLE_SIZE): arr
 
 /**
  * 각 자료구조 벤치마크 실행
+ *
+ * @param int $limit 최대 삽입 행 수
  */
-function benchmarkStructure(string $name, object $structure, string $dataFile, array $searchKeys): string
+function benchmarkStructure(string $name, object $structure, string $dataFile, array $searchKeys, int $limit): string
 {
     // ------------------
     // INSERT
@@ -80,7 +87,7 @@ function benchmarkStructure(string $name, object $structure, string $dataFile, a
 
     $count = 0;
 
-    while (($line = fgets($fp)) !== false) {
+    while (($line = fgets($fp)) !== false && $count < $limit) {
 
         $parts = str_getcsv(trim($line), ',', '"', '\\');
 
@@ -124,7 +131,7 @@ function benchmarkStructure(string $name, object $structure, string $dataFile, a
     // ------------------
     $sortTime = 0.0;
 
-    if (ENABLE_SORT && method_exists($structure, 'sortByKeyString') && $name !== 'BTree') {
+    if (ENABLE_SORT && method_exists($structure, 'sortByKeyString')) {
         $sortStart = nowMs();
 
         $structure->sortByKeyString();
@@ -142,8 +149,7 @@ function benchmarkStructure(string $name, object $structure, string $dataFile, a
     // RESULT
     // ------------------
     $result = [];
-    $result[] = "========== {$name} ==========";
-    $result[] = "Inserted Count     : {$count}";
+    $result[] = "Inserted Count     : " . number_format($count);
     $result[] = "Insert Time (ms)   : " . number_format($insertTime, 3);
     $result[] = "Search Sample      : " . count($searchKeys);
     $result[] = "Found Count        : {$found}";
@@ -165,18 +171,18 @@ if (!file_exists(DATA_FILE)) {
 
 ensureDirectory(RESULT_DIR);
 
-// 검색용 key 샘플
+// 검색용 key 샘플 (처음 1000개 — 모든 크기 구간에 포함됨)
 $searchKeys = loadSearchKeys(DATA_FILE);
 
-// 자료구조 목록
-$structures = [
-    'HashTable'  => new HashTable(),
-    'BTree'      => new BTree(8),
-    'LinkedList' => new LinkedList(),
-    'ArrayList'  => new ArrayList(),
-    'Vector'     => new Vector(),
-    'Graph'      => new Graph(),
-    'Heap'       => new HeapStructure(),
+// 자료구조 팩토리 목록 (크기마다 새 인스턴스 생성)
+$structureFactories = [
+    'HashTable'  => fn() => new HashTable(),
+    'BTree'      => fn() => new BTree(8),
+    'LinkedList' => fn() => new LinkedList(),
+    'ArrayList'  => fn() => new ArrayList(),
+    'Vector'     => fn() => new Vector(),
+    'Graph'      => fn() => new Graph(),
+    'Heap'       => fn() => new HeapStructure(),
 ];
 
 $output = [];
@@ -185,17 +191,27 @@ $output[] = "Data File: " . DATA_FILE;
 $output[] = "Search Sample Size: " . count($searchKeys);
 $output[] = "";
 
-foreach ($structures as $name => $structure) {
+foreach (INSERT_SIZES as $size) {
 
-    gc_collect_cycles();
+    $output[] = "========================================";
+    $output[] = "  Insert Size : " . number_format($size);
+    $output[] = "========================================";
+    $output[] = "";
 
-    $output[] = benchmarkStructure($name, $structure, DATA_FILE, $searchKeys);
+    foreach ($structureFactories as $name => $factory) {
 
-    unset($structure);
+        gc_collect_cycles();
 
-    gc_collect_cycles();
+        $structure = $factory();
+
+        $output[] = "---------- {$name} ----------";
+        $output[] = benchmarkStructure($name, $structure, DATA_FILE, $searchKeys, $size);
+
+        unset($structure);
+
+        gc_collect_cycles();
+    }
 }
 
 file_put_contents(RESULT_FILE, implode(PHP_EOL, $output));
-
-echo "벤치마크 완료: " . RESULT_FILE . PHP_EOL;
+echo "벤치마크 완료! 결과: " . RESULT_FILE . PHP_EOL;

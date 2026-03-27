@@ -26,8 +26,9 @@ import structures.Vector.Vector;
 
 public class Benchmark {
     public static void main(String[] args) throws IOException {
-        String dataFile = "data/dataset.txt";
-        String resultFile = "results/benchmark_result.txt";
+        String rootDir = "C:/Users/jeonghwanroh/algorithmTest/java/DataStructureBenchmark";
+        String dataFile = rootDir + "/data/dataset.txt";
+        String resultFile = rootDir + "/results/benchmark_result.txt";
         int searchSampleSize = 1000;
 
         // 자료구조 인스턴스 생성 (클래스는 앞서 제공한 Java 버전 사용)
@@ -44,7 +45,7 @@ public class Benchmark {
         List<String[]> data = generateData(dataCount);
 
         // Ensure the 'data' directory exists
-        File dataDir = new File("data");
+        File dataDir = new File(rootDir + "/data");
         if (!dataDir.exists()) {
             dataDir.mkdirs();
         }
@@ -75,7 +76,7 @@ public class Benchmark {
         structures.put("Heap", heap);
 
         // Ensure the 'results' directory exists
-        File resultsDir = new File("results");
+        File resultsDir = new File(rootDir + "/results");
         if (!resultsDir.exists()) {
             resultsDir.mkdirs();
         }

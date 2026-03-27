@@ -1,66 +1,271 @@
-Benchmark Started At: 2026-03-23 04:26:27
-Data File: C:\Users\jeonghwanroh\php\DataStructureBenchmark/data/dataset.txt
+Benchmark Started At: 2026-03-27 07:09:50
+Data File: C:\Users\jeonghwanroh\algorithmTest\php\DataStructureBenchmark/data/dataset.txt
 Search Sample Size: 1000
 
-========== HashTable ==========
-Inserted Count     : 200000
-Insert Time (ms)   : 774.151
-Search Sample      : 1000
-Found Count        : 1000
-Search Time (ms)   : 0.249
-Sort Time (ms)     : 722.903
-Peak Memory (MB)   : 136.000
+========================================
+  Insert Size : 10,000
+========================================
 
-========== BTree ==========
-Inserted Count     : 200000
-Insert Time (ms)   : 2,213.313
+---------- HashTable ----------
+Inserted Count     : 10,000
+Insert Time (ms)   : 431.059
 Search Sample      : 1000
 Found Count        : 1000
-Search Time (ms)   : 5.640
-Sort Time (ms)     : 0.000
-Peak Memory (MB)   : 246.000
+Search Time (ms)   : 1.688
+Sort Time (ms)     : 158.012
+Peak Memory (MB)   : 8.000
 
-========== LinkedList ==========
-Inserted Count     : 200000
-Insert Time (ms)   : 773.101
+---------- BTree ----------
+Inserted Count     : 10,000
+Insert Time (ms)   : 754.223
 Search Sample      : 1000
 Found Count        : 1000
-Search Time (ms)   : 12.137
-Sort Time (ms)     : 1,017.590
-Peak Memory (MB)   : 404.000
+Search Time (ms)   : 25.109
+Sort Time (ms)     : 165.289
+Peak Memory (MB)   : 10.000
 
-========== ArrayList ==========
-Inserted Count     : 200000
-Insert Time (ms)   : 778.248
+---------- LinkedList ----------
+Inserted Count     : 10,000
+Insert Time (ms)   : 394.227
 Search Sample      : 1000
 Found Count        : 1000
-Search Time (ms)   : 13.880
-Sort Time (ms)     : 817.902
-Peak Memory (MB)   : 446.000
+Search Time (ms)   : 118.004
+Sort Time (ms)     : 236.742
+Peak Memory (MB)   : 10.000
 
-========== Vector ==========
-Inserted Count     : 200000
-Insert Time (ms)   : 752.484
+---------- ArrayList ----------
+Inserted Count     : 10,000
+Insert Time (ms)   : 404.777
 Search Sample      : 1000
 Found Count        : 1000
-Search Time (ms)   : 20.702
-Sort Time (ms)     : 831.944
-Peak Memory (MB)   : 624.000
+Search Time (ms)   : 134.188
+Sort Time (ms)     : 145.219
+Peak Memory (MB)   : 10.000
 
-========== Graph ==========
-Inserted Count     : 200000
-Insert Time (ms)   : 949.995
+---------- Vector ----------
+Inserted Count     : 10,000
+Insert Time (ms)   : 420.641
 Search Sample      : 1000
 Found Count        : 1000
-Search Time (ms)   : 0.354
-Sort Time (ms)     : 841.258
-Peak Memory (MB)   : 730.000
+Search Time (ms)   : 222.801
+Sort Time (ms)     : 206.977
+Peak Memory (MB)   : 12.000
 
-========== Heap ==========
-Inserted Count     : 200000
-Insert Time (ms)   : 874.709
+---------- Graph ----------
+Inserted Count     : 10,000
+Insert Time (ms)   : 456.582
 Search Sample      : 1000
 Found Count        : 1000
-Search Time (ms)   : 0.208
-Sort Time (ms)     : 1,058.211
-Peak Memory (MB)   : 862.000
+Search Time (ms)   : 2.320
+Sort Time (ms)     : 144.508
+Peak Memory (MB)   : 16.000
+
+---------- Heap ----------
+Inserted Count     : 10,000
+Insert Time (ms)   : 464.551
+Search Sample      : 1000
+Found Count        : 1000
+Search Time (ms)   : 2.078
+Sort Time (ms)     : 208.180
+Peak Memory (MB)   : 16.000
+
+========================================
+  Insert Size : 50,000
+========================================
+
+---------- HashTable ----------
+Inserted Count     : 50,000
+Insert Time (ms)   : 1,936.238
+Search Sample      : 1000
+Found Count        : 1000
+Search Time (ms)   : 2.879
+Sort Time (ms)     : 1,290.801
+Peak Memory (MB)   : 42.000
+
+---------- BTree ----------
+Inserted Count     : 50,000
+Insert Time (ms)   : 4,258.520
+Search Sample      : 1000
+Found Count        : 1000
+Search Time (ms)   : 44.281
+Sort Time (ms)     : 1,711.852
+Peak Memory (MB)   : 42.000
+
+---------- LinkedList ----------
+Inserted Count     : 50,000
+Insert Time (ms)   : 1,972.781
+Search Sample      : 1000
+Found Count        : 1000
+Search Time (ms)   : 133.957
+Sort Time (ms)     : 2,302.227
+Peak Memory (MB)   : 46.000
+
+---------- ArrayList ----------
+Inserted Count     : 50,000
+Insert Time (ms)   : 2,104.000
+Search Sample      : 1000
+Found Count        : 1000
+Search Time (ms)   : 138.859
+Sort Time (ms)     : 1,309.910
+Peak Memory (MB)   : 46.000
+
+---------- Vector ----------
+Inserted Count     : 50,000
+Insert Time (ms)   : 2,189.199
+Search Sample      : 1000
+Found Count        : 1000
+Search Time (ms)   : 227.688
+Sort Time (ms)     : 1,780.359
+Peak Memory (MB)   : 58.000
+
+---------- Graph ----------
+Inserted Count     : 50,000
+Insert Time (ms)   : 2,505.789
+Search Sample      : 1000
+Found Count        : 1000
+Search Time (ms)   : 2.930
+Sort Time (ms)     : 1,369.816
+Peak Memory (MB)   : 74.000
+
+---------- Heap ----------
+Inserted Count     : 50,000
+Insert Time (ms)   : 2,442.496
+Search Sample      : 1000
+Found Count        : 1000
+Search Time (ms)   : 2.711
+Sort Time (ms)     : 1,832.027
+Peak Memory (MB)   : 74.000
+
+========================================
+  Insert Size : 100,000
+========================================
+
+---------- HashTable ----------
+Inserted Count     : 100,000
+Insert Time (ms)   : 4,086.340
+Search Sample      : 1000
+Found Count        : 1000
+Search Time (ms)   : 3.402
+Sort Time (ms)     : 3,548.430
+Peak Memory (MB)   : 84.000
+
+---------- BTree ----------
+Inserted Count     : 100,000
+Insert Time (ms)   : 10,211.332
+Search Sample      : 1000
+Found Count        : 1000
+Search Time (ms)   : 49.652
+Sort Time (ms)     : 4,223.539
+Peak Memory (MB)   : 90.000
+
+---------- LinkedList ----------
+Inserted Count     : 100,000
+Insert Time (ms)   : 3,972.121
+Search Sample      : 1000
+Found Count        : 1000
+Search Time (ms)   : 125.820
+Sort Time (ms)     : 5,018.684
+Peak Memory (MB)   : 96.000
+
+---------- ArrayList ----------
+Inserted Count     : 100,000
+Insert Time (ms)   : 4,130.852
+Search Sample      : 1000
+Found Count        : 1000
+Search Time (ms)   : 155.762
+Sort Time (ms)     : 3,281.180
+Peak Memory (MB)   : 96.000
+
+---------- Vector ----------
+Inserted Count     : 100,000
+Insert Time (ms)   : 4,382.422
+Search Sample      : 1000
+Found Count        : 1000
+Search Time (ms)   : 239.301
+Sort Time (ms)     : 4,298.270
+Peak Memory (MB)   : 120.000
+
+---------- Graph ----------
+Inserted Count     : 100,000
+Insert Time (ms)   : 4,795.121
+Search Sample      : 1000
+Found Count        : 1000
+Search Time (ms)   : 3.098
+Sort Time (ms)     : 3,291.273
+Peak Memory (MB)   : 140.000
+
+---------- Heap ----------
+Inserted Count     : 100,000
+Insert Time (ms)   : 5,013.129
+Search Sample      : 1000
+Found Count        : 1000
+Search Time (ms)   : 3.242
+Sort Time (ms)     : 4,649.859
+Peak Memory (MB)   : 140.000
+
+========================================
+  Insert Size : 200,000
+========================================
+
+---------- HashTable ----------
+Inserted Count     : 200,000
+Insert Time (ms)   : 8,519.398
+Search Sample      : 1000
+Found Count        : 1000
+Search Time (ms)   : 3.609
+Sort Time (ms)     : 9,216.469
+Peak Memory (MB)   : 164.000
+
+---------- BTree ----------
+Inserted Count     : 200,000
+Insert Time (ms)   : 23,890.676
+Search Sample      : 1000
+Found Count        : 1000
+Search Time (ms)   : 59.570
+Sort Time (ms)     : 11,332.012
+Peak Memory (MB)   : 172.000
+
+---------- LinkedList ----------
+Inserted Count     : 200,000
+Insert Time (ms)   : 9,573.258
+Search Sample      : 1000
+Found Count        : 1000
+Search Time (ms)   : 211.867
+Sort Time (ms)     : 14,893.961
+Peak Memory (MB)   : 184.000
+
+---------- ArrayList ----------
+Inserted Count     : 200,000
+Insert Time (ms)   : 11,532.230
+Search Sample      : 1000
+Found Count        : 1000
+Search Time (ms)   : 294.191
+Sort Time (ms)     : 9,035.563
+Peak Memory (MB)   : 184.000
+
+---------- Vector ----------
+Inserted Count     : 200,000
+Insert Time (ms)   : 9,528.012
+Search Sample      : 1000
+Found Count        : 1000
+Search Time (ms)   : 299.398
+Sort Time (ms)     : 9,985.191
+Peak Memory (MB)   : 238.000
+
+---------- Graph ----------
+Inserted Count     : 200,000
+Insert Time (ms)   : 10,050.371
+Search Sample      : 1000
+Found Count        : 1000
+Search Time (ms)   : 3.250
+Sort Time (ms)     : 7,810.953
+Peak Memory (MB)   : 274.000
+
+---------- Heap ----------
+Inserted Count     : 200,000
+Insert Time (ms)   : 10,088.828
+Search Sample      : 1000
+Found Count        : 1000
+Search Time (ms)   : 3.352
+Sort Time (ms)     : 11,153.859
+Peak Memory (MB)   : 274.000

@@ -3,6 +3,7 @@ package main;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Paths;
 import java.util.Random;
 import java.util.UUID;
 
@@ -13,16 +14,17 @@ public class GenerateData {
         String[] concepts = {"energy", "power", "force", "light", "shadow", "speed", "time", "gravity", "signal", "pulse"};
         String[] cosmos = {"galaxy", "star", "planet", "universe", "orbit", "comet", "nebula", "meteor", "cosmos", "void"};
 
-        int target = 200_000;
+        int target = 200000;
         Random rand = new Random();
 
-        // Ensure the 'data' directory exists
-        File dataDir = new File("data");
+        // Define the root directory
+        String rootDir = "C:/Users/jeonghwanroh/algorithmTest/java/DataStructureBenchmark";
+        File dataDir = Paths.get(rootDir, "data").toFile();
         if (!dataDir.exists()) {
             dataDir.mkdirs();
         }
 
-        try (FileWriter fw = new FileWriter("data/dataset.txt")) {
+        try (FileWriter fw = new FileWriter(Paths.get(rootDir, "data", "dataset.txt").toFile())) {
             fw.write("key,keyString,value\n");
             for (int i = 0; i < target; i++) {
                 String uuid = UUID.randomUUID().toString();

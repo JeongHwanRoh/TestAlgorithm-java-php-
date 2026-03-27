@@ -9,9 +9,10 @@ import java.util.Map;
 import structures.common.Items;
 
 public class Graph {
-	private final Map<String, Items> vertices = new HashMap<>();
-	private final Map<String, List<String>> adjList = new HashMap<>();
-	private final Map<String, String> lastByPrefix = new HashMap<>();
+	// 해시맵 기반의 인접 리스트로 구현
+	private final Map<String, Items> vertices = new HashMap<>(); // 각 정점의 키와 관련된 데이터를 저장하는 해시맵
+	private final Map<String, List<String>> adjList = new HashMap<>(); // 각 정점의 키와 인접한 정점들의 리스트를 저장하는 해시맵(인접 리스트의 변형 형태)
+	private final Map<String, String> lastByPrefix = new HashMap<>(); // 각 접두사에 대해 마지막으로 삽입된 정점의 키를 저장하는 해시맵
 
 	// insert
 	public void insert(String key, String keyString, String value) {
